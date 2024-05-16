@@ -7,11 +7,11 @@ import { AnalyticsRepository } from './analytics.repository';
 export class AnalyticsService {
   constructor(private readonly analyticsRepository: AnalyticsRepository) {}
 
-  create(createAnalyticsDto: CreateAnalyticsDto) {
+  create(createAnalyticsDto: CreateAnalyticsDto, userId: string) {
     return this.analyticsRepository.create({
       ...createAnalyticsDto,
       timestamp: new Date(),
-      userId: '123',
+      userId: userId,
     });
   }
 

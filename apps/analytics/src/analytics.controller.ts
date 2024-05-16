@@ -6,40 +6,50 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { AnalyticsService } from './analytics.service';
 import { CreateAnalyticsDto } from './dto/create-analytics.dto';
 import { UpdateAnalyticsDto } from './dto/update-analytics.dto';
+import { CurrentUser, JwtAuthGuard, UserDto } from '@app/common';
 
 @Controller('analytics')
 export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createAnalyticsDto: CreateAnalyticsDto) {
-    return this.analyticsService.create(createAnalyticsDto);
+  async create(
+    @Body() createAnalyticsDto: CreateAnalyticsDto,
+    @CurrentUser() user: UserDto,
+  ) {
+    return this.analyticsService.create(createAnalyticsDto, user._id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
+  async findAll() {
     return this.analyticsService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.analyticsService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateAnalyticsDto: UpdateAnalyticsDto,
   ) {
     return this.analyticsService.update(id, updateAnalyticsDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.analyticsService.remove(id);
   }
 }
