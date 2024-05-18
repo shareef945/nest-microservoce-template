@@ -1,36 +1,47 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateAnalyticsDto } from './dto/create-analytics.dto';
 import { UpdateAnalyticsDto } from './dto/update-analytics.dto';
 import { AnalyticsRepository } from './analytics.repository';
-
+import { PAYMENTS_SERVICE } from '@app/common';
+import { map } from 'rxjs';
+import { ClientProxy } from '@nestjs/microservices';
 @Injectable()
 export class AnalyticsService {
-  constructor(private readonly analyticsRepository: AnalyticsRepository) {}
+  constructor(
+    private readonly analyticsRepository: AnalyticsRepository,
+    @Inject(PAYMENTS_SERVICE) private readonly paymentsService: ClientProxy,
+  ) {}
 
-  create(createAnalyticsDto: CreateAnalyticsDto, userId: string) {
-    return this.analyticsRepository.create({
-      ...createAnalyticsDto,
-      timestamp: new Date(),
-      userId: userId,
-    });
+  async create(createAnalyticsDto: CreateAnalyticsDto, userId: string) {
+    return this.paymentsService
+      .send('create_charge', createAnalyticsDto.charge)
+      .pipe(
+        map(() => {
+          return this.analyticsRepository.create({
+            ...createAnalyticsDto,
+            timestamp: new Date(),
+            userId: userId,
+          });
+        }),
+      );
   }
 
-  findAll() {
+  async findAll() {
     return this.analyticsRepository.find({});
   }
 
-  findOne(_id: string) {
+  async findOne(_id: string) {
     return this.analyticsRepository.findOne({ _id });
   }
 
-  update(_id: string, updateAnalyticsDto: UpdateAnalyticsDto) {
+  async update(_id: string, updateAnalyticsDto: UpdateAnalyticsDto) {
     return this.analyticsRepository.findOneAndUpdate(
       { _id },
       { $set: updateAnalyticsDto },
     );
   }
 
-  remove(_id: string) {
+  async remove(_id: string) {
     return this.analyticsRepository.findOneAndDelete({ _id });
   }
 }
