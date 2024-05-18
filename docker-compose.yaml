@@ -1,6 +1,6 @@
 services:
   analytics:
-    build: 
+    build:
       context: .
       dockerfile: ./apps/analytics/Dockerfile
       target: development
@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/usr/src/app
   auth:
-    build: 
+    build:
       context: .
       dockerfile: ./apps/auth/Dockerfile
       target: development
@@ -21,5 +21,18 @@ services:
       - ./apps/auth/.env
     ports:
       - '3001:3001'
+    volumes:
+      - .:/usr/src/app
+
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/Dockerfile
+      target: development
+    command: pnpm run start:dev payments
+    env_file:
+      - ./apps/payments/.env
+    ports:
+      - '3003:3003'
     volumes:
       - .:/usr/src/app
