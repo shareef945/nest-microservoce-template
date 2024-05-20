@@ -23,7 +23,7 @@ export class AnalyticsController {
     @Body() createAnalyticsDto: CreateAnalyticsDto,
     @CurrentUser() user: UserDto,
   ) {
-    return this.analyticsService.create(createAnalyticsDto, user._id);
+    return this.analyticsService.create(createAnalyticsDto, user);
   }
 
   @UseGuards(JwtAuthGuard)

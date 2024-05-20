@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateAnalyticsDto } from './dto/create-analytics.dto';
 import { UpdateAnalyticsDto } from './dto/update-analytics.dto';
 import { AnalyticsRepository } from './analytics.repository';
-import { PAYMENTS_SERVICE } from '@app/common';
+import { PAYMENTS_SERVICE, UserDto } from '@app/common';
 import { map } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 @Injectable()
@@ -12,15 +12,22 @@ export class AnalyticsService {
     @Inject(PAYMENTS_SERVICE) private readonly paymentsService: ClientProxy,
   ) {}
 
-  async create(createAnalyticsDto: CreateAnalyticsDto, userId: string) {
+  async create(
+    createAnalyticsDto: CreateAnalyticsDto,
+    { email, _id: userId }: UserDto,
+  ) {
     return this.paymentsService
-      .send('create_charge', createAnalyticsDto.charge)
+      .send('create_charge', {
+        ...createAnalyticsDto.charge,
+        email,
+      })
       .pipe(
-        map(() => {
+        map((res) => {
           return this.analyticsRepository.create({
             ...createAnalyticsDto,
             timestamp: new Date(),
             userId: userId,
+            invoiceId: res.id,
           });
         }),
       );
