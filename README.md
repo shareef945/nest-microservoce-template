@@ -1,73 +1,87 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Munchies Backend Services
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Munchies is a comprehensive food services provider, specializing in catering services for university food courts. This repository contains the backend services for the Munchies application, which includes a payment microservice, notifications, and analytics.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Payments Microservice**: Handles all payment transactions securely and efficiently.
+- **Notifications**: Sends out alerts and messages to users and admins.
+- **Analytics**: Provides insights into sales, user behavior, and other metrics.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Getting Started
 
-## Installation
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-$ pnpm install
-```
+### Prerequisites
 
-## Running the app
+Before you begin, ensure you have met the following requirements:
 
-```bash
-# development
-$ pnpm run start
+- Docker
+- Docker Compose
 
-# watch mode
-$ pnpm run start:dev
+### Installing
 
-# production mode
-$ pnpm run start:prod
-```
+To install Munchies Backend Services, follow these steps:
 
-## Test
+1. Clone the repository to your local machine:
 
-```bash
-# unit tests
-$ pnpm run test
+   ```bash
+   git clone https://github.com/shareef945/munchies-backend-v2.git
+   cd munchies-backend
+   ```
 
-# e2e tests
-$ pnpm run test:e2e
+2. Start the services using Docker Compose:
 
-# test coverage
-$ pnpm run test:cov
-```
+   ```bash
+   docker-compose up
+   ```
 
-## Support
+This command will build the images if they don't exist and start the containers as defined in the `docker-compose.yml` file.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Usage
 
-## Stay in touch
+After running the containers, the backend services will be accessible via the defined ports in the `docker-compose.yml` file.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Payments Microservice**: `http://localhost:<PORT>/payments`
+- **Notifications**: `http://localhost:<PORT>/notifications`
+- **Analytics**: `http://localhost:<PORT>/analytics`
+
+## Development
+
+To contribute to the Munchies Backend Services, follow these steps:
+
+1. Create a branch:
+
+   ```bash
+   git checkout -b branch-name
+   ```
+
+2. Make your changes and commit them:
+
+   ```bash
+   git commit -m 'Commit message'
+   ```
+
+3. Push to the original branch:
+
+   ```bash
+   git push origin branch-name
+   ```
+
+4. Create the pull request.
+
+## Contributing
+
+We welcome contributions to the Munchies Backend Services. Please read `CONTRIBUTING.md` for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the [MIT] - see the `LICENSE.md` file for details.
+
+## Acknowledgments
+
+- So far, its all just me and the almighty father
+
+## Contact
+
+If you have any questions or comments about the Munchies Backend Services, please feel free to contact me. info@saitechnology.co
