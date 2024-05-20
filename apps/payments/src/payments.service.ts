@@ -30,7 +30,10 @@ export class PaymentsService {
     //   // You might need to add other necessary properties here, like currency
     // });
 
-    this.notificationsService.emit('notify_email', { email });
+    this.notificationsService.emit('notify_email', {
+      email,
+      text: `Your payment of $${amount} has been completed successfully`,
+    });
     // Return the payment intent
     return 'paymentIntent';
   }
