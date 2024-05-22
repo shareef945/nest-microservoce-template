@@ -4,12 +4,16 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY pnpm-lock.yaml ./
+COPY tsconfig.json tsconfig.json
 
 RUN npm install -g pnpm
 
 RUN pnpm install
 
-COPY . .
+COPY apps/analytics apps/analytics
+COPY libs libs
+
+RUN cd apps/analytics && pnpm install
 
 RUN pnpm run build
 
