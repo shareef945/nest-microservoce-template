@@ -4,11 +4,12 @@ services:
       context: .
       dockerfile: ./apps/analytics/Dockerfile
       target: development
-    command: pnpm run start:dev analytics
+    command: pnpm run start:debug analytics
     env_file:
       - ./apps/analytics/.env
     ports:
       - '3000:3000'
+      - '9229:9229'
     volumes:
       - .:/usr/src/app
   auth:
