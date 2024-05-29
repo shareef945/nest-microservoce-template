@@ -1,6 +1,6 @@
-# Munchies Backend Services
+# Nest Microservice Template
 
-Munchies is a comprehensive food services provider, specializing in catering services for university food courts. This repository contains the backend services for the Munchies application, which includes a payment microservice, notifications, and analytics.
+This repository contains microservices which includes a payment microservice, notifications, and analytics.
 
 ## Features
 
@@ -26,8 +26,7 @@ To install Munchies Backend Services, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/shareef945/munchies-backend-v2.git
-   cd munchies-backend
+   git clone https://github.com/shareef945/nest-microservoce-template.git
    ```
 
 2. Start the services using Docker Compose:
