@@ -11,7 +11,7 @@ import {
 import { AnalyticsService } from './analytics.service';
 import { CreateAnalyticsDto } from './dto/create-analytics.dto';
 import { UpdateAnalyticsDto } from './dto/update-analytics.dto';
-import { CurrentUser, JwtAuthGuard, UserDto } from '@app/common';
+import { CurrentUser, JwtAuthGuard, Roles, UserDto } from '@app/common';
 
 @Controller('analytics')
 export class AnalyticsController {
@@ -49,6 +49,7 @@ export class AnalyticsController {
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
+  @Roles('Admin')
   async remove(@Param('id') id: string) {
     return this.analyticsService.remove(id);
   }
